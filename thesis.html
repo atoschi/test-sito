@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="description" content="A modular and interaction-aware trajectory planning framework for multi-agent autonomous racing, combining high-level decision-making and MPC.">
+  <meta name="keywords" content="Autonomous Racing, Multi-Agent Planning, Trajectory Optimization, Model Predictive Control, Drivable Area, Overtakes, Decision-Making">
+
+  <meta property="og:title" content="Multi-Agent Planning for Autonomous Racing"/>
+  <meta property="og:description" content="A modular framework combining drivable area computation, decision-making, and MPC for robust planning in competitive autonomous racing."/>
+  <meta property="og:url" content="https://atoschi.github.io/tunnels-framework/"/>
+  <meta property="og:image" content="static/images/banner.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="Multi-Agent Planning for Autonomous Racing">
+  <meta name="twitter:description" content="Interaction-aware planning and overtaking strategy for autonomous racing using modular decision-making and drivable areas.">
+  <meta name="twitter:image" content="static/images/twitter_banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-Agent Planning</title>
+  <link rel="icon" type="image/x-icon" href="static/images/racing-car.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    .carousel-item {
+      background-color: white;
+      padding: 2rem 1rem;
+    }
+    .carousel-item .video-wrapper {
+      position: relative;
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 56.25%; /* 16:9 */
+    }
+    .carousel-item .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar is-transparent" role="navigation" aria-label="main navigation" style="background-color: #f5f5f5;">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="index.html">
+      <span class="icon">
+        <i class="fas fa-home"></i>
+      </span>
+      <span><strong>Project Home</strong></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu is-active"> <div class="navbar-end">
+      <a class="navbar-item" href="thesis.html">
+        <span class="icon" style="margin-right: 5px;">
+          <i class="fas fa-graduation-cap"></i>
+        </span>
+        Go to Thesis
+      </a>
+      </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Modular Decision-Making and Drivable Areas for Multi-Agent Autonomous Racing</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://www.linkedin.com/in/alessandro-toschi-52757715b/" target="_blank">Alessandro Toschi</a>,</span>
+            <span class="author-block"><a target="_blank">Francesco Prignoli</a>,</span>
+            <span class="author-block"><a target="_blank">Marko Bertogna</a></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of Modena and Reggio Emilia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="video-container">
+        <iframe width="100%" height="450"
+          src="https://www.youtube.com/embed/-ard9iAo2Sg?si=1HGHVMCxB_afxLKj"
+          frameborder="0" 
+          allow="autoplay; encrypted-media" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Fastest UNIMORE Racing overtake during the Indy Autonomous Challenge at Indianapolis Motor Speedway 2024
+      </h2>
+
+      <div class="buttons is-centered" style="margin-top: 1rem;">
+        <a class="button is-link" href="static/pdfs/Modular_Decision-Making_and_Drivable_Areas_for_Multi-Agent_Autonomous_Racing.pdf" download>
+          <span class="icon"><i class="fas fa-file-download"></i></span>
+          <span>Download Paper (PDF)</span>
+        </a>
+
+        <!-- ResearchGate link -->
+        <a class="button is-light" href="https://www.researchgate.net/profile/Alessandro-Toschi-2/research" target="_blank" rel="noopener noreferrer">
+          <span class="icon"><i class="ai ai-researchgate"></i></span>
+          <span>View on ResearchGate</span>
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper presents an interaction-aware, modular framework for local trajectory planning in autonomous driving, particularly suited for multi-agent racing scenarios. The framework first identifies viable drivable areas (“tunnels”), taking into account predictions of other agents’ behaviors, and subsequently utilizes a high-level decision-making module to select the optimal corridor considering both static and moving vehicles. This decision-making module also strategically determines when to follow an opponent or initiate an overtaking maneuver, while ensuring compliance with racing regulations. A Model Predictive Control (MPC) module is then employed to compute an optimal, collision-free trajectory within the chosen corridor. The proposed modular architecture reduces the computational complexity typically associated with MPC optimization and facilitates independent component testing. Simulations and real-world tests on various racing tracks demonstrate the efficacy of our approach, even in highly dynamic interactive scenarios with multiple simultaneous opponents. Videos of these and additional experiments are available at <a href="https://atoschi.github.io/tunnels-framework/" target="_blank">https://atoschi.github.io/tunnels-framework/</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Carousel of demo videos -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Assetto Corsa simulations</h2>
+      <p class="subtitle is-5">
+        A set of simulations demonstrating overtaking at Yas Marina Circuit using Super Formula SF23 mods.
+        The platform includes active opponents that react to the ego vehicle and supports simulated collisions, making it suitable for
+        evaluating wheel-to-wheel interactions and highly aggressive maneuvers with small overtaking margins.
+        In this environment, localization and vehicle detection are idealized and not simulated, but the absence of opponent forecasting actually provides a realistic setup, since in real races the future actions of other agents
+        cannot be known with certainty.
+        Opponents were configured to behave aggressively, while their engine torque was slightly reduced to make interaction testing easier
+        by adjusting the ego vehicle’s speed and accelerations.
+        The interfaces used to connect Assetto Corsa with external planners and controllers are open-source and described here: <a href="https://assetto-corsa-gym.github.io/" target="_blank">https://assetto-corsa-gym.github.io/</a>.
+      </p>
+      <div id="video-carousel" class="carousel">
+        <div class="carousel-item">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/cFSAtg1hr0Y" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/5pjvA0LYoa4" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/fexd-C3Wn_M" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <p>Corridor-based trajectory planning with moving vehicles</p>
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/aBKwmO-sxC4" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <p>Comparative simulation of overtake strategies</p>
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/SjpjI25Dlzc" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/X5kt4qLyObU" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/-nhhV_Smd68" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/LVrsKWe-ajY" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  bulmaCarousel.attach('#video-carousel', {
+    slidesToScroll: 1,
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    loop: true,
+    navigation: true,
+    pagination: true
+  });
+</script>
+  
+<!-- Youtube video - Figure 8 --> 
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Real-world overtake at Indianapolis Motor Speedway</h2>
+      <p class="subtitle is-5">
+        Video of the time sequence presented in Figure 8 of the paper, showing the graphical user interface and vehicle camera views (teaser video).
+      </p>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            <!-- Youtube embed code here -->
+            <iframe src="https://www.youtube.com/embed/xHNL2yvLBUM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+<!-- Youtube video - Figure 9 --> 
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Real-world overtake at Las Vegas Motor Speedway</h2>
+      <p class="subtitle is-5">
+        Video of the time sequence presented in Figure 9 of the paper, showing AV24 onboard footage during testing.
+      </p>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            <!-- Youtube embed code here -->
+            <iframe src="https://www.youtube.com/embed/7in41qI9jg8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+<!-- Youtube video - Autonoma -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Autonoma Autoverse simulation</h2>
+      <p class="subtitle is-5">
+        Different overtake scenarios at Yas Marina Circuit using the Autonoma Autoverse simulator. The main advantage of this environment is the ability to configure opponents easily. Although not in this specific clip, the same simulator was also used to compete in a championship against other autonomous racing teams.
+        In this simulation, a script periodically spawns new opponents on random racing lines with random speeds (always lower than the ego vehicle’s speed) and resets them every 30 seconds, whether the overtakes were completed or not. The objective was to generate a broader variety of scenarios compared to nominal, hand-crafted ones.
+      </p>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-video">
+            <!-- Youtube embed code here -->
+            <iframe src="https://www.youtube.com/embed/uCQHHqUNmbM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+<!-- Youtube video - FMU -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Multi-body simulation</h2>
+      <p class="subtitle is-5">
+        Extensive run at Yas Marina Circuit using UNIMORE Racing’s proprietary multi-body simulator. In this case, the opponent forecasting model is idealized, but the opponents simply follow a predefined racing line and do not react to the ego vehicle. The objective was to validate the overtaking maneuvers in the most realistic simulator available in terms of vehicle dynamics, and to further tune the MPC.
+      </p>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-video">
+            <!-- Youtube embed code here -->
+            <iframe src="https://www.youtube.com/embed/2l8DsILx5NA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+</body>
+</html>
