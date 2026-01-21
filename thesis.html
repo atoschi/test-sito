@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <meta name="description" content="PhD thesis (latest): updated and extended results for modular decision-making and drivable areas in multi-agent autonomous racing.">
+  <meta name="description" content="Thesis (latest): extended results for modular decision-making and drivable areas in multi-agent autonomous racing.">
   <meta name="keywords" content="Autonomous Racing, Multi-Agent Planning, Trajectory Optimization, MPC, Drivable Area, Decision-Making">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,43 +13,32 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
   <style>
-    .placeholder {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px dashed rgba(0,0,0,0.25);
-      background: repeating-linear-gradient(45deg, rgba(0,0,0,0.03), rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.06) 10px, rgba(0,0,0,0.06) 20px);
-      height: 340px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(0,0,0,0.6);
-      font-weight: 700;
-    }
-    .video-wrapper { position: relative; padding-top: 56.25%; }
-    .video-wrapper iframe, .video-wrapper video {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      border: 0; border-radius: 12px;
-    }
-    .cardish {
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 14px;
-      padding: 1.1rem;
+    .top-nav { background-color:#f5f5f5; border-bottom:1px solid rgba(0,0,0,0.08); }
+    .video-wrapper { position: relative; width: 100%; padding-top: 56.25%; border-radius: 12px; overflow: hidden; }
+    .video-wrapper iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .cardish { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:14px; padding:1.1rem; }
+    .carousel-item { background-color: white; padding: 1.5rem 1rem; }
+    .carousel-item .video-wrapper { width: 85%; margin: 0 auto; }
+    .pill {
+      display:inline-block; padding:.25rem .6rem; border-radius:999px;
+      font-size:.85rem; border:1px solid rgba(0,0,0,0.12); background:#fff;
     }
   </style>
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
 </head>
 
 <body>
 
-<!-- NAVBAR (thesis version) -->
-<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color:#f5f5f5; border-bottom:1px solid rgba(0,0,0,0.08);">
+<!-- NAVBAR (thesis version): home left, other two pages right -->
+<nav class="navbar top-nav" role="navigation" aria-label="main navigation">
   <div class="container is-max-desktop">
     <div class="navbar-brand">
       <a class="navbar-item" href="index.html">
@@ -79,23 +68,27 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Thesis (Latest): Modular Decision-Making and Drivable Areas for Multi-Agent Autonomous Racing</h1>
+
+          <h1 class="title is-1 publication-title">
+            Thesis (Latest): Modular Decision-Making and Drivable Areas for Multi-Agent Autonomous Racing
+          </h1>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://www.linkedin.com/in/alessandro-toschi-52757715b/" target="_blank">Alessandro Toschi</a></span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/alessandro-toschi-52757715b/" target="_blank">Alessandro Toschi</a>
+            </span>
           </div>
-
           <div class="is-size-5 publication-authors">
             <span class="author-block">University of Modena and Reggio Emilia</span>
           </div>
 
           <div class="notification is-link is-light" style="margin-top: 1.25rem;">
-            <b>Latest version.</b> This page presents extended and updated results compared to the paper.
-            For the exact paper snapshot, see <a href="paper.html">Paper (Legacy)</a>.
+            <b>Latest version.</b> This page includes the full set of paper videos plus additional thesis results.
+            For the exact snapshot referenced by the paper, see <a href="paper.html">Paper (Legacy)</a>.
           </div>
 
-          <!-- You said you'll add the thesis download button here -->
-          <div class="buttons is-centered" style="margin-top: 1rem;">
+          <!-- You said you'll place the thesis download button here -->
+          <div class="buttons is-centered" style="margin-top: 0.75rem;">
             <a class="button is-link" href="static/pdfs/thesis.pdf" target="_blank" rel="noopener">
               <span class="icon"><i class="fas fa-file-pdf"></i></span>
               <span>Download Thesis (PDF)</span>
@@ -108,118 +101,93 @@
   </div>
 </section>
 
-<!-- Banner video (placeholder) -->
-<section class="hero teaser">
+<!-- Thesis banner highlight (different from paper) -->
+<section class="hero teaser is-light">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <h2 class="title is-3 has-text-centered">Thesis highlight video</h2>
+      <h2 class="title is-3 has-text-centered">Thesis highlight</h2>
+      <p class="subtitle is-6 has-text-centered">
+        Placeholder: your new banner clip (updated pipeline / new scenarios / consolidated results).
+      </p>
 
       <div class="video-wrapper" style="margin-top: 1rem;">
-        <!-- Option A: YouTube -->
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID_THESIS_HIGHLIGHT" allowfullscreen></iframe>
-
-        <!-- Option B: local mp4 (uncomment if you prefer)
-        <video controls autoplay muted loop playsinline>
-          <source src="static/videos/thesis_banner.mp4" type="video/mp4">
-        </video>
-        -->
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_THESIS_BANNER" allowfullscreen></iframe>
       </div>
-
-      <p class="subtitle is-6 has-text-centered" style="margin-top: 0.75rem;">
-        Placeholder caption: one sentence on what’s new and what this clip demonstrates.
-      </p>
     </div>
   </div>
 </section>
 
-<!-- Overview -->
+<!-- Overview + What's new -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Overview</h2>
     <div class="content has-text-justified">
       <p>
-        Placeholder: 6–10 lines summarizing the thesis contributions, evaluation scope, and key findings.
+        Placeholder: 6–10 lines summarizing the thesis contributions, how it extends the paper,
+        and what improvements/validation were added.
       </p>
     </div>
-  </div>
-</section>
 
-<!-- What's new -->
-<section class="section is-light">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">What’s new vs. the paper</h2>
+    <h2 class="title is-3" style="margin-top: 2.5rem;">What’s new vs. the paper</h2>
     <div class="columns is-variable is-6">
       <div class="column">
         <div class="cardish">
-          <h3 class="title is-5">New experiments</h3>
+          <h3 class="title is-5">Extensions</h3>
           <div class="content">
             <ul>
-              <li>Placeholder: additional tracks / multi-opponent setups</li>
-              <li>Placeholder: broader scenario coverage & stress tests</li>
-              <li>Placeholder: real-world extensions</li>
+              <li>Placeholder: broader evaluation and additional tracks/scenarios.</li>
+              <li>Placeholder: refined decision policy and safety/performance tradeoff analysis.</li>
+              <li>Placeholder: more ablations, failure cases, and mitigation strategies.</li>
             </ul>
           </div>
         </div>
       </div>
       <div class="column">
         <div class="cardish">
-          <h3 class="title is-5">Algorithmic updates</h3>
+          <h3 class="title is-5">Practical tooling</h3>
           <div class="content">
             <ul>
-              <li>Placeholder: improved decision logic (follow/overtake)</li>
-              <li>Placeholder: robustness and safety/performance tradeoff</li>
-              <li>Placeholder: improved debugging/analysis</li>
+              <li>Status decoder tool for interpreting overtake/tunnel states.</li>
+              <li>Placeholder: improved logging + debugging workflow.</li>
+              <li>Placeholder: reproducibility notes and configuration documentation.</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- Method figures -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Method</h2>
-    <div class="columns is-variable is-6">
-      <div class="column">
-        <div class="cardish">
-          <h3 class="title is-5">Pipeline figure</h3>
-          <div class="placeholder">FIGURE PLACEHOLDER (pipeline)</div>
-          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
-        </div>
-      </div>
-      <div class="column">
-        <div class="cardish">
-          <h3 class="title is-5">Decision module detail</h3>
-          <div class="placeholder">FIGURE PLACEHOLDER (decision logic)</div>
-          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Results videos -->
+<!-- Featured / curated results -->
 <section class="section is-light">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Results</h2>
-    <p class="subtitle is-6">Add selected clips (some from paper + new ones). Keep it curated.</p>
+    <h2 class="title is-3">Featured results</h2>
+    <p class="subtitle is-6">
+      Curated set: best clips (mix of paper + thesis). The full paper archive is below.
+    </p>
 
     <div class="columns is-variable is-6">
       <div class="column">
         <div class="cardish">
-          <h3 class="title is-5">New scenario #1</h3>
-          <div class="video-wrapper">
+          <div class="is-flex is-justify-content-space-between is-align-items-center">
+            <h3 class="title is-5" style="margin-bottom:0;">New result #1</h3>
+            <span class="pill">Thesis</span>
+          </div>
+          <div class="video-wrapper" style="margin-top: .75rem;">
             <iframe src="https://www.youtube.com/embed/VIDEO_ID_NEW_1" allowfullscreen></iframe>
           </div>
           <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
         </div>
       </div>
+
       <div class="column">
         <div class="cardish">
-          <h3 class="title is-5">New scenario #2</h3>
-          <div class="video-wrapper">
+          <div class="is-flex is-justify-content-space-between is-align-items-center">
+            <h3 class="title is-5" style="margin-bottom:0;">New result #2</h3>
+            <span class="pill">Thesis</span>
+          </div>
+          <div class="video-wrapper" style="margin-top: .75rem;">
             <iframe src="https://www.youtube.com/embed/VIDEO_ID_NEW_2" allowfullscreen></iframe>
           </div>
           <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
@@ -227,22 +195,62 @@
       </div>
     </div>
 
-    <div class="cardish" style="margin-top: 1.25rem;">
-      <h3 class="title is-5">More videos (carousel)</h3>
-      <div id="thesis-carousel" class="carousel">
-        <div class="carousel-item">
-          <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_CAROUSEL_1" allowfullscreen></iframe>
+    <div class="columns is-variable is-6">
+      <div class="column">
+        <div class="cardish">
+          <div class="is-flex is-justify-content-space-between is-align-items-center">
+            <h3 class="title is-5" style="margin-bottom:0;">Indianapolis (paper highlight)</h3>
+            <span class="pill">Paper</span>
           </div>
-        </div>
-        <div class="carousel-item">
-          <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_CAROUSEL_2" allowfullscreen></iframe>
+          <div class="video-wrapper" style="margin-top: .75rem;">
+            <iframe src="https://www.youtube.com/embed/xHNL2yvLBUM" allowfullscreen></iframe>
           </div>
+          <p class="content is-size-7" style="margin-top:.75rem;">Same clip as Fig. 8 in the paper (kept for continuity).</p>
         </div>
       </div>
+
+      <div class="column">
+        <div class="cardish">
+          <div class="is-flex is-justify-content-space-between is-align-items-center">
+            <h3 class="title is-5" style="margin-bottom:0;">Las Vegas (paper highlight)</h3>
+            <span class="pill">Paper</span>
+          </div>
+          <div class="video-wrapper" style="margin-top: .75rem;">
+            <iframe src="https://www.youtube.com/embed/7in41qI9jg8" allowfullscreen></iframe>
+          </div>
+          <p class="content is-size-7" style="margin-top:.75rem;">Same clip as Fig. 9 in the paper (kept for continuity).</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Full paper video archive (all the paper videos, compact, via carousel) -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Paper video archive</h2>
+    <p class="subtitle is-6">
+      Full set of paper videos (legacy). For the paper page layout and text, see <a href="paper.html">Paper (Legacy)</a>.
+    </p>
+
+    <div class="cardish">
+      <h3 class="title is-5">Assetto Corsa simulations (paper set)</h3>
+
+      <div id="paper-archive-carousel" class="carousel">
+        <!-- These are the same AC videos you listed in paper.html -->
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/cFSAtg1hr0Y" allowfullscreen></iframe></div></div>
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5pjvA0LYoa4" allowfullscreen></iframe></div></div>
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fexd-C3Wn_M" allowfullscreen></iframe></div></div>
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/aBKwmO-sxC4" allowfullscreen></iframe></div></div>
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SjpjI25Dlzc" allowfullscreen></iframe></div></div>
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/X5kt4qLyObU" allowfullscreen></iframe></div></div>
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/-nhhV_Smd68" allowfullscreen></iframe></div></div>
+        <div class="carousel-item"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LVrsKWe-ajY" allowfullscreen></iframe></div></div>
+      </div>
+
       <script>
-        bulmaCarousel.attach('#thesis-carousel', {
+        bulmaCarousel.attach('#paper-archive-carousel', {
           slidesToScroll: 1,
           slidesToShow: 1,
           autoplay: true,
@@ -254,25 +262,48 @@
       </script>
     </div>
 
+    <div class="columns is-variable is-6" style="margin-top: 1.25rem;">
+      <div class="column">
+        <div class="cardish">
+          <h3 class="title is-5">Autonoma Autoverse (paper)</h3>
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/uCQHHqUNmbM" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="cardish">
+          <h3 class="title is-5">Multi-body simulator (paper)</h3>
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/2l8DsILx5NA" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- Extra figures -->
-<section class="section">
+<!-- Figures placeholders -->
+<section class="section is-light">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Additional figures</h2>
+    <h2 class="title is-3">Figures (placeholders)</h2>
     <div class="columns is-variable is-6">
       <div class="column">
         <div class="cardish">
-          <h3 class="title is-5">Figure placeholder</h3>
-          <div class="placeholder">FIGURE PLACEHOLDER</div>
+          <h3 class="title is-5">Pipeline / architecture</h3>
+          <div class="placeholder" style="height:320px; border-radius:12px; border:1px dashed rgba(0,0,0,0.25); display:flex; align-items:center; justify-content:center;">
+            FIGURE PLACEHOLDER
+          </div>
           <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
         </div>
       </div>
       <div class="column">
         <div class="cardish">
-          <h3 class="title is-5">Figure placeholder</h3>
-          <div class="placeholder">FIGURE PLACEHOLDER</div>
+          <h3 class="title is-5">Results summary</h3>
+          <div class="placeholder" style="height:320px; border-radius:12px; border:1px dashed rgba(0,0,0,0.25); display:flex; align-items:center; justify-content:center;">
+            FIGURE PLACEHOLDER
+          </div>
           <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
         </div>
       </div>
