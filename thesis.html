@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
 
-  <meta name="description" content="PhD thesis page: updated and extended results for modular decision-making and drivable areas in multi-agent autonomous racing.">
-  <meta name="keywords" content="Autonomous Racing, Multi-Agent Planning, Trajectory Optimization, Model Predictive Control, Drivable Area, Decision-Making">
+  <meta name="description" content="PhD thesis (latest): updated and extended results for modular decision-making and drivable areas in multi-agent autonomous racing.">
+  <meta name="keywords" content="Autonomous Racing, Multi-Agent Planning, Trajectory Optimization, MPC, Drivable Area, Decision-Making">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Thesis (Latest) | Multi-Agent Planning</title>
@@ -17,17 +17,29 @@
   <link rel="stylesheet" href="static/css/index.css">
 
   <style>
-    .top-nav { background: #f5f5f5; border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .section-title { margin-top: 0.5rem; }
-    .media-box { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 1rem; }
     .placeholder {
-      width: 100%; border-radius: 10px; border: 1px dashed rgba(0,0,0,0.25);
+      width: 100%;
+      border-radius: 12px;
+      border: 1px dashed rgba(0,0,0,0.25);
       background: repeating-linear-gradient(45deg, rgba(0,0,0,0.03), rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.06) 10px, rgba(0,0,0,0.06) 20px);
-      height: 320px; display: flex; align-items: center; justify-content: center;
-      color: rgba(0,0,0,0.6); font-weight: 600;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0,0,0,0.6);
+      font-weight: 700;
     }
     .video-wrapper { position: relative; padding-top: 56.25%; }
-    .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 10px; }
+    .video-wrapper iframe, .video-wrapper video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: 0; border-radius: 12px;
+    }
+    .cardish {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 1.1rem;
+    }
   </style>
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -36,21 +48,26 @@
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar top-nav" role="navigation" aria-label="main navigation">
+<!-- NAVBAR (thesis version) -->
+<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color:#f5f5f5; border-bottom:1px solid rgba(0,0,0,0.08);">
   <div class="container is-max-desktop">
     <div class="navbar-brand">
       <a class="navbar-item" href="index.html">
         <span class="icon"><i class="fas fa-home"></i></span>
-        <span style="margin-left:8px;"><strong>Project Webpage</strong></span>
+        <span style="margin-left:8px;"><strong>Homepage</strong></span>
       </a>
     </div>
 
     <div class="navbar-menu is-active">
       <div class="navbar-end">
-        <a class="navbar-item" href="paper.html"><i class="fas fa-file-alt" style="margin-right:8px;"></i>Paper (Legacy)</a>
-        <a class="navbar-item" href="code.html"><i class="fab fa-github" style="margin-right:8px;"></i>Code</a>
-        <a class="navbar-item" href="tunnelStatusDecoder.html"><i class="fas fa-tools" style="margin-right:8px;"></i>Status Decoder</a>
+        <a class="navbar-item" href="paper.html">
+          <span class="icon" style="margin-right:8px;"><i class="fas fa-file-alt"></i></span>
+          Paper (Legacy)
+        </a>
+        <a class="navbar-item" href="code.html">
+          <span class="icon" style="margin-right:8px;"><i class="fab fa-github"></i></span>
+          Code
+        </a>
       </div>
     </div>
   </div>
@@ -62,22 +79,23 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">PhD Thesis — Modular Decision-Making and Drivable Areas for Multi-Agent Autonomous Racing</h1>
-          <div class="is-size-5">
+          <h1 class="title is-1 publication-title">Thesis (Latest): Modular Decision-Making and Drivable Areas for Multi-Agent Autonomous Racing</h1>
+
+          <div class="is-size-5 publication-authors">
             <span class="author-block"><a href="https://www.linkedin.com/in/alessandro-toschi-52757715b/" target="_blank">Alessandro Toschi</a></span>
           </div>
-          <div class="is-size-5">
+
+          <div class="is-size-5 publication-authors">
             <span class="author-block">University of Modena and Reggio Emilia</span>
           </div>
 
           <div class="notification is-link is-light" style="margin-top: 1.25rem;">
-            <b>Latest version.</b> This page presents updated and extended results compared to the paper.
+            <b>Latest version.</b> This page presents extended and updated results compared to the paper.
             For the exact paper snapshot, see <a href="paper.html">Paper (Legacy)</a>.
           </div>
 
-          <!-- Placeholder for your Thesis PDF button (you said you'll add it here) -->
+          <!-- You said you'll add the thesis download button here -->
           <div class="buttons is-centered" style="margin-top: 1rem;">
-            <!-- Replace href when you place the PDF -->
             <a class="button is-link" href="static/pdfs/thesis.pdf" target="_blank" rel="noopener">
               <span class="icon"><i class="fas fa-file-pdf"></i></span>
               <span>Download Thesis (PDF)</span>
@@ -90,15 +108,37 @@
   </div>
 </section>
 
+<!-- Banner video (placeholder) -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">Thesis highlight video</h2>
+
+      <div class="video-wrapper" style="margin-top: 1rem;">
+        <!-- Option A: YouTube -->
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_THESIS_HIGHLIGHT" allowfullscreen></iframe>
+
+        <!-- Option B: local mp4 (uncomment if you prefer)
+        <video controls autoplay muted loop playsinline>
+          <source src="static/videos/thesis_banner.mp4" type="video/mp4">
+        </video>
+        -->
+      </div>
+
+      <p class="subtitle is-6 has-text-centered" style="margin-top: 0.75rem;">
+        Placeholder caption: one sentence on what’s new and what this clip demonstrates.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- Overview -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Overview</h2>
+    <h2 class="title is-3">Overview</h2>
     <div class="content has-text-justified">
       <p>
-        <!-- TODO: 5–8 lines max -->
-        Placeholder text: This thesis extends the modular, interaction-aware planning framework introduced in the paper,
-        including improved decision-making logic, broader experimental validation, and additional simulation environments.
+        Placeholder: 6–10 lines summarizing the thesis contributions, evaluation scope, and key findings.
       </p>
     </div>
   </div>
@@ -107,138 +147,133 @@
 <!-- What's new -->
 <section class="section is-light">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">What’s new vs. the paper</h2>
-    <div class="content">
-      <ul>
-        <li><b>Placeholder:</b> Extended evaluation (more tracks / scenarios / opponents).</li>
-        <li><b>Placeholder:</b> Updated decision policies (follow vs overtake) and robustness improvements.</li>
-        <li><b>Placeholder:</b> Additional debugging/analysis tooling (e.g., status decoder).</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- Method / Pipeline -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Method</h2>
-
+    <h2 class="title is-3">What’s new vs. the paper</h2>
     <div class="columns is-variable is-6">
       <div class="column">
-        <div class="media-box">
-          <h3 class="title is-5">Pipeline diagram</h3>
-          <!-- Replace with your figure -->
-          <div class="placeholder">FIGURE PLACEHOLDER (pipeline diagram)</div>
-          <!-- Example when ready:
-          <img src="static/images/thesis_pipeline.png" alt="Pipeline diagram" style="border-radius:10px;">
-          -->
-          <p class="content is-size-7" style="margin-top: .75rem;">
-            Caption placeholder: Modules and data flow (drivable areas, decision-making, MPC).
-          </p>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="media-box">
-          <h3 class="title is-5">Key contributions</h3>
+        <div class="cardish">
+          <h3 class="title is-5">New experiments</h3>
           <div class="content">
             <ul>
-              <li>Placeholder contribution #1</li>
-              <li>Placeholder contribution #2</li>
-              <li>Placeholder contribution #3</li>
+              <li>Placeholder: additional tracks / multi-opponent setups</li>
+              <li>Placeholder: broader scenario coverage & stress tests</li>
+              <li>Placeholder: real-world extensions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="cardish">
+          <h3 class="title is-5">Algorithmic updates</h3>
+          <div class="content">
+            <ul>
+              <li>Placeholder: improved decision logic (follow/overtake)</li>
+              <li>Placeholder: robustness and safety/performance tradeoff</li>
+              <li>Placeholder: improved debugging/analysis</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- Results (videos) -->
+<!-- Method figures -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method</h2>
+    <div class="columns is-variable is-6">
+      <div class="column">
+        <div class="cardish">
+          <h3 class="title is-5">Pipeline figure</h3>
+          <div class="placeholder">FIGURE PLACEHOLDER (pipeline)</div>
+          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="cardish">
+          <h3 class="title is-5">Decision module detail</h3>
+          <div class="placeholder">FIGURE PLACEHOLDER (decision logic)</div>
+          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results videos -->
 <section class="section is-light">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Results</h2>
-    <p class="subtitle is-6">Add the key clips (some from paper + new ones). Keep it curated (5–10 max).</p>
+    <h2 class="title is-3">Results</h2>
+    <p class="subtitle is-6">Add selected clips (some from paper + new ones). Keep it curated.</p>
 
     <div class="columns is-variable is-6">
       <div class="column">
-        <div class="media-box">
-          <h3 class="title is-5">Teaser / highlight (new)</h3>
+        <div class="cardish">
+          <h3 class="title is-5">New scenario #1</h3>
           <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_NEW_1" allowfullscreen></iframe>
           </div>
-          <p class="content is-size-7" style="margin-top: .75rem;">
-            Placeholder caption: what this clip demonstrates and why it’s new.
-          </p>
+          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
         </div>
       </div>
-
       <div class="column">
-        <div class="media-box">
-          <h3 class="title is-5">Comparison / ablation</h3>
+        <div class="cardish">
+          <h3 class="title is-5">New scenario #2</h3>
           <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_NEW_2" allowfullscreen></iframe>
           </div>
-          <p class="content is-size-7" style="margin-top: .75rem;">
-            Placeholder caption: baseline vs updated logic.
-          </p>
+          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
         </div>
       </div>
     </div>
 
-    <!-- Optional carousel placeholder -->
-    <div class="media-box" style="margin-top: 1.25rem;">
+    <div class="cardish" style="margin-top: 1.25rem;">
       <h3 class="title is-5">More videos (carousel)</h3>
       <div id="thesis-carousel" class="carousel">
         <div class="carousel-item">
           <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_CAROUSEL_1" allowfullscreen></iframe>
           </div>
         </div>
         <div class="carousel-item">
           <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_CAROUSEL_2" allowfullscreen></iframe>
           </div>
         </div>
       </div>
-      <p class="content is-size-7" style="margin-top:.75rem;">
-        Placeholder: add/remove slides as needed.
-      </p>
+      <script>
+        bulmaCarousel.attach('#thesis-carousel', {
+          slidesToScroll: 1,
+          slidesToShow: 1,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          loop: true,
+          navigation: true,
+          pagination: true
+        });
+      </script>
     </div>
-
-    <script>
-      bulmaCarousel.attach('#thesis-carousel', {
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        loop: true,
-        navigation: true,
-        pagination: true
-      });
-    </script>
 
   </div>
 </section>
 
-<!-- Figures -->
+<!-- Extra figures -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 section-title">Figures</h2>
+    <h2 class="title is-3">Additional figures</h2>
     <div class="columns is-variable is-6">
       <div class="column">
-        <div class="media-box">
+        <div class="cardish">
           <h3 class="title is-5">Figure placeholder</h3>
           <div class="placeholder">FIGURE PLACEHOLDER</div>
-          <p class="content is-size-7" style="margin-top:.75rem;">Caption placeholder.</p>
+          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
         </div>
       </div>
       <div class="column">
-        <div class="media-box">
+        <div class="cardish">
           <h3 class="title is-5">Figure placeholder</h3>
           <div class="placeholder">FIGURE PLACEHOLDER</div>
-          <p class="content is-size-7" style="margin-top:.75rem;">Caption placeholder.</p>
+          <p class="content is-size-7" style="margin-top:.75rem;">Placeholder caption.</p>
         </div>
       </div>
     </div>
