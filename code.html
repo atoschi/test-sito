@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Code release status and debugging tools for the multi-agent autonomous racing planning framework.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Code & Tools | Multi-Agent Racing</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/racing-car.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(20,20,20,0.75));
+      color: #fff;
+    }
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(6px);
+      background: rgba(20,20,20,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .decoder-frame {
+      width: 100%;
+      height: 900px; /* adjust if you want */
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .decoder-frame { height: 980px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Simple sticky navbar -->
+<nav class="navbar sticky-nav" role="navigation" aria-label="main navigation">
+  <div class="container is-max-desktop">
+    <div class="navbar-brand">
+      <a class="navbar-item has-text-white" href="index.html" style="font-weight:700;">
+        <span class="icon" style="margin-right:8px;"><i class="fas fa-flag-checkered"></i></span>
+        <span>Multi-Agent Racing</span>
+      </a>
+    </div>
+
+    <div class="navbar-menu is-active">
+      <div class="navbar-end">
+        <a class="navbar-item has-text-white" href="thesis.html">
+          <span class="icon" style="margin-right:6px;"><i class="fas fa-graduation-cap"></i></span>
+          <span>Thesis</span>
+        </a>
+        <a class="navbar-item has-text-white" href="paper.html">
+          <span class="icon" style="margin-right:6px;"><i class="fas fa-file-alt"></i></span>
+          <span>Paper</span>
+        </a>
+        <a class="navbar-item has-text-white" href="tunnelStatusDecoder.html">
+          <span class="icon" style="margin-right:6px;"><i class="fas fa-tools"></i></span>
+          <span>Status Decoder</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero page-hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h1 class="title is-2 has-text-white">Code & Debug Tools</h1>
+      <p class="subtitle is-5 has-text-white">
+        Code release status, documentation pointers, and the Tunnel Status Decoder utility.
+      </p>
+
+      <div class="notification is-warning is-light">
+        <b>Code status:</b> the full framework implementation is not public yet.
+        This page will be updated with the repository link and release notes once available.
+      </div>
+
+      <div class="columns is-variable is-6">
+        <div class="column">
+          <div class="box">
+            <h2 class="title is-4">
+              <span class="icon"><i class="fab fa-github"></i></span>
+              Repository (Coming soon)
+            </h2>
+            <p class="content">
+              When the code is released, this section will include:
+            </p>
+            <ul>
+              <li>Stable branch / tag for reproducibility</li>
+              <li>Installation instructions (Docker / ROS2 / dependencies)</li>
+              <li>Examples (simulation configs, track setups, run scripts)</li>
+              <li>Changelog between paper → thesis → code release</li>
+            </ul>
+
+            <p class="content">
+              Suggested layout once ready:
+              <code>main</code> (stable) + <code>dev</code> + <code>paper-release</code> tags.
+            </p>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="box">
+            <h2 class="title is-4">
+              <span class="icon"><i class="fas fa-tools"></i></span>
+              Tunnel Status Decoder
+            </h2>
+            <p class="content">
+              Utility to decode the tunnel/overtake logic status integer and compare iterations.
+              This tool will remain available even after the code release because it’s useful for debugging logs.
+            </p>
+
+            <div class="buttons">
+              <a class="button is-link" href="tunnelStatusDecoder.html">
+                <span class="icon"><i class="fas fa-external-link-alt"></i></span>
+                <span>Open Standalone Tool</span>
+              </a>
+            </div>
+
+            <p class="is-size-7 has-text-grey">
+              Note: embedded version below runs in an iframe to avoid CSS conflicts (Tailwind vs Bulma).
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Embedded Decoder</h2>
+    <p class="subtitle is-6">
+      Paste a status code (e.g., <code>221</code>, <code>-41</code>, <code>-110</code>, <code>1045</code>) and get a readable explanation.
+    </p>
+
+    <iframe class="decoder-frame" src="tunnelStatusDecoder.html" title="Tunnel Status Decoder"></iframe>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container is-max-desktop">
+    <div class="content">
+      <p class="is-size-7">
+        This project page follows common academic project-page patterns (Bulma-based templates) and is adapted for versioned results (paper vs thesis) plus tooling.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

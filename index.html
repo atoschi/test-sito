@@ -1,83 +1,280 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Trajectory planning framework for autonomous racing: Thesis and Paper results.">
+  <meta name="description" content="Trajectory planning framework for autonomous racing: Thesis (latest), Paper (legacy), and code release status.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Multi-Agent Autonomous Racing Framework</title>
-  
+
   <link rel="icon" type="image/x-icon" href="static/images/racing-car.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Optional OG/Twitter (set images later if you want) -->
+  <meta property="og:title" content="Multi-Agent Planning for Autonomous Racing" />
+  <meta property="og:description" content="Hub page: Thesis (latest), Paper (legacy), and code status for a modular interaction-aware planning framework." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    /* --- Fullscreen video hero (AnyCar-like) --- */
+    .hero.video-hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero.video-hero .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: #000;
+    }
+    .hero.video-hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .hero.video-hero .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.55) 35%,
+        rgba(0, 0, 0, 0.65) 100%
+      );
+    }
+    .hero.video-hero .hero-body,
+    .hero.video-hero .hero-head {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- Navbar style --- */
+    .navbar.is-transparent {
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(6px);
+    }
+    .navbar .navbar-item,
+    .navbar .navbar-item a,
+    .navbar .navbar-link {
+      color: #fff;
+    }
+    .navbar .navbar-item:hover,
+    .navbar .navbar-link:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .navbar .button.is-inverted {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+    .navbar .button.is-inverted:hover {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    /* --- Hero content readability --- */
+    .hero-title {
+      color: #fff;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+    .hero-subtitle, .hero-text {
+      color: rgba(255,255,255,0.92);
+      text-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+
+    /* --- Cards on hero --- */
+    .hero-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 14px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+      height: 100%;
+    }
+    .hero-card .tag {
+      border-radius: 999px;
+    }
+
+    /* --- Small layout tweaks --- */
+    .maxw-900 { max-width: 900px; margin: 0 auto; }
+    .tight { line-height: 1.15; }
+  </style>
 </head>
+
 <body>
 
-<section class="hero is-fullheight is-light">
+<section class="hero is-fullheight video-hero">
+  <!-- Background video -->
+  <div class="hero-video-bg" aria-hidden="true">
+    <video playsinline autoplay muted loop>
+      <source src="static/videos/cover.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="overlay" aria-hidden="true"></div>
+
+  <!-- Top navbar (desktop + mobile friendly) -->
+  <div class="hero-head">
+    <header class="navbar is-transparent">
+      <div class="container is-max-desktop">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="index.html" style="font-weight: 700;">
+            <span class="icon" style="margin-right:8px;"><i class="fas fa-flag-checkered"></i></span>
+            <span>Multi-Agent Racing</span>
+          </a>
+        </div>
+
+        <div class="navbar-menu is-active">
+          <div class="navbar-end">
+            <a class="navbar-item" href="thesis.html">
+              <span class="icon" style="margin-right:6px;"><i class="fas fa-graduation-cap"></i></span>
+              <span>Thesis (Latest)</span>
+            </a>
+            <a class="navbar-item" href="paper.html">
+              <span class="icon" style="margin-right:6px;"><i class="fas fa-file-alt"></i></span>
+              <span>Paper (Legacy)</span>
+            </a>
+            <a class="navbar-item" href="code.html">
+              <span class="icon" style="margin-right:6px;"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+            <a class="navbar-item" href="tunnelStatusDecoder.html">
+              <span class="icon" style="margin-right:6px;"><i class="fas fa-tools"></i></span>
+              <span>Status Decoder</span>
+            </a>
+
+            <span class="navbar-item">
+              <a class="button is-inverted" href="static/pdfs/thesis.pdf" target="_blank" rel="noopener">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Thesis PDF</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero content -->
   <div class="hero-body">
-    <div class="container has-text-centered">
-      
-      <h1 class="title is-1">
-        Modular Decision-Making and Drivable Areas<br>for Multi-Agent Autonomous Racing
+    <div class="container is-max-desktop has-text-centered">
+
+      <h1 class="title is-1 hero-title tight">
+        Modular Decision-Making and Drivable Areas<br>
+        for Multi-Agent Autonomous Racing
       </h1>
-      <h2 class="subtitle is-3" style="margin-top: 1rem;">
-        Research Project Overview
+
+      <h2 class="subtitle is-4 hero-subtitle" style="margin-top: 0.75rem;">
+        Project hub: paper snapshot, latest thesis results, and code release status
       </h2>
-      
-      <div class="content is-size-5" style="max-width: 800px; margin: 2rem auto;">
+
+      <div class="content hero-text is-size-6 maxw-900" style="margin-top: 1.25rem;">
         <p>
-          Welcome to the project page for our autonomous racing planning framework. 
-          Please select the version of the results you wish to view:
+          This website hosts <b>two versions</b> of the work.
+          If you arrived from a paper citation, use <b>Paper (Legacy)</b> for the exact referenced material.
+          For the most up-to-date and extended results, go to <b>Thesis (Latest)</b>.
         </p>
       </div>
 
-      <div class="columns is-centered is-variable is-8" style="margin-top: 3rem;">
-        
-        <div class="column is-5">
-          <div class="box" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
+      <!-- CTA cards -->
+      <div class="columns is-centered is-variable is-6" style="margin-top: 2.25rem;">
+
+        <!-- Thesis -->
+        <div class="column is-4">
+          <div class="hero-card p-5">
+            <div class="is-flex is-justify-content-space-between is-align-items-center">
               <span class="icon is-large has-text-link">
-                <i class="fas fa-file-alt fa-3x"></i>
+                <i class="fas fa-graduation-cap fa-2x"></i>
               </span>
-              <h3 class="title is-4" style="margin-top: 1rem;">Conference Paper</h3>
-              <p class="content">
-                Explore the original results, videos, and methodology as presented in the published paper.
-              </p>
+              <span class="tag is-link is-light">Latest</span>
             </div>
-            <a href="paper.html" class="button is-link is-fullwidth is-medium is-outlined" style="margin-top: 1.5rem;">
-              <span>View Paper Results</span>
-              <span class="icon is-small">
-                <i class="fas fa-arrow-right"></i>
-              </span>
-            </a>
+
+            <h3 class="title is-4" style="margin-top: 1rem;">Thesis</h3>
+            <p class="content">
+              Updated and extended results, additional experiments, and consolidated evaluation.
+              Includes selected material from the paper plus new content.
+            </p>
+
+            <div class="buttons is-centered" style="margin-top: 1rem;">
+              <a href="thesis.html" class="button is-link is-medium is-fullwidth">
+                <span>Open Thesis Page</span>
+                <span class="icon is-small"><i class="fas fa-arrow-right"></i></span>
+              </a>
+              <a href="static/pdfs/thesis.pdf" target="_blank" rel="noopener" class="button is-link is-light is-fullwidth">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Download Thesis</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="column is-5">
-          <div class="box" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
+        <!-- Paper -->
+        <div class="column is-4">
+          <div class="hero-card p-5">
+            <div class="is-flex is-justify-content-space-between is-align-items-center">
               <span class="icon is-large has-text-danger">
-                <i class="fas fa-graduation-cap fa-3x"></i>
+                <i class="fas fa-file-alt fa-2x"></i>
               </span>
-              <h3 class="title is-4" style="margin-top: 1rem;">Master Thesis</h3>
-              <p class="content">
-                Discover the extended research, including updated algorithms, new simulation environments, and comprehensive results.
-              </p>
+              <span class="tag is-danger is-light">Legacy</span>
             </div>
-            <a href="thesis.html" class="button is-danger is-fullwidth is-medium is-outlined" style="margin-top: 1.5rem;">
-              <span>View Thesis Results</span>
-              <span class="icon is-small">
-                <i class="fas fa-arrow-right"></i>
+
+            <h3 class="title is-4" style="margin-top: 1rem;">Paper</h3>
+            <p class="content">
+              Original project page as referenced by the paper: same figures, same experiments, same videos.
+              Ideal for reproducibility.
+            </p>
+
+            <div class="buttons is-centered" style="margin-top: 1rem;">
+              <a href="paper.html" class="button is-danger is-medium is-fullwidth">
+                <span>Open Paper Page</span>
+                <span class="icon is-small"><i class="fas fa-arrow-right"></i></span>
+              </a>
+              <a href="static/pdfs/paper.pdf" target="_blank" rel="noopener" class="button is-danger is-light is-fullwidth">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Download Paper</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="column is-4">
+          <div class="hero-card p-5">
+            <div class="is-flex is-justify-content-space-between is-align-items-center">
+              <span class="icon is-large has-text-dark">
+                <i class="fab fa-github fa-2x"></i>
               </span>
-            </a>
+              <span class="tag is-dark is-light">Coming soon</span>
+            </div>
+
+            <h3 class="title is-4" style="margin-top: 1rem;">Code + Tools</h3>
+            <p class="content">
+              The repository code release is not public yet. Meanwhile, you can use the
+              <b>Tunnel Status Decoder</b> tool to debug overtake logic states.
+            </p>
+
+            <div class="buttons is-centered" style="margin-top: 1rem;">
+              <a href="code.html" class="button is-dark is-medium is-fullwidth">
+                <span>Open Code Page</span>
+                <span class="icon is-small"><i class="fas fa-arrow-right"></i></span>
+              </a>
+              <a href="tunnelStatusDecoder.html" class="button is-dark is-light is-fullwidth">
+                <span class="icon"><i class="fas fa-tools"></i></span>
+                <span>Status Decoder</span>
+              </a>
+            </div>
           </div>
         </div>
 
       </div>
 
-      <div style="margin-top: 4rem;" class="is-size-6 has-text-grey">
+      <div class="hero-text is-size-7" style="margin-top: 1.75rem;">
         <p>University of Modena and Reggio Emilia</p>
       </div>
 

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunnel State Decoder (4-Digit)</title>
+    <!-- Loading Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#10B981', // Emerald 500
+                        secondary: '#374151', // Gray 700
+                        background: '#F9FAFB', // Gray 50
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style to hide increment/decrement arrows on number inputs */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+        input[type=number] { 
+          -moz-appearance: textfield;
+        }
+        /* Transitions for a smoother user experience */
+        .card {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center p-4 font-sans">
+
+    <div id="app" class="w-full max-w-xl bg-white rounded-xl shadow-2xl p-6 md:p-8 card space-y-8">
+        
+        <!-- Main Decoder Section -->
+        <div>
+            <h1 class="text-3xl font-bold text-secondary mb-2 text-center">
+                Tunnel State Decoder
+            </h1>
+            <p class="text-sm text-gray-500 mb-6 text-center">
+                Enter the 4-digit code to analyze the tunnel state and overtake logic.
+            </p>
+
+            <!-- Input Area -->
+            <div class="mb-6">
+                <label for="codeInput" class="block text-sm font-medium text-gray-700 mb-2">
+                    State Number (Positive or Negative Integer)
+                </label>
+                <input 
+                    type="number" 
+                    id="codeInput" 
+                    placeholder="Ex: 221, -41, -110, 1045"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary text-lg transition duration-150"
+                    oninput="decodeNumber(this.value)"
+                >
+            </div>
+
+            <!-- Output Area -->
+            <div id="outputCard" class="bg-gray-50 border border-gray-200 rounded-lg p-5">
+                <h2 class="text-xl font-semibold text-primary mb-3 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Decoding Result
+                </h2>
+                <div id="resultContent" class="space-y-3">
+                    <p id="mainStatus" class="text-gray-900 font-medium text-base">Awaiting number...</p>
+                    <div id="opponentDetails" class="hidden pt-2 border-t border-gray-200">
+                        <p class="text-sm text-gray-600">
+                            <span class="font-semibold">Total Opponents:</span> <span id="opponentsCount" class="text-secondary">0</span>
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            <span class="font-semibold">Defenders (or Considered Such):</span> <span id="defendersCount" class="text-secondary">0</span>
+                        </p>
+                    </div>
+                    <p id="escapeStatus" class="text-sm font-bold text-red-600 hidden">
+                        🔥 WARNING: Runoff Areas TRIGGERED!
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toggle Button for Comparison Tool -->
+        <button onclick="toggleComparisonTool()" id="toggleButton" class="w-full bg-secondary hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200 shadow-md">
+            Open Tunnel Comparison Tool
+        </button>
+
+        <!-- Comparison Section (Initially hidden) -->
+        <div id="comparisonSection" class="border-t border-gray-300 pt-8 hidden">
+            <h2 class="text-2xl font-bold text-secondary mb-4 text-center">
+                Tunnel Comparison Tool
+            </h2>
+            <p class="text-sm text-gray-500 mb-4 text-center">
+                Compare two codes to see what changed between iterations.
+            </p>
+
+            <div class="flex space-x-4 mb-4">
+                <input 
+                    type="number" 
+                    id="code1Input" 
+                    placeholder="Code 1 (Start)"
+                    class="w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary text-lg transition duration-150"
+                >
+                <input 
+                    type="number" 
+                    id="code2Input" 
+                    placeholder="Code 2 (End)"
+                    class="w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary text-lg transition duration-150"
+                >
+            </div>
+            <button onclick="compareTunnels()" class="w-full bg-primary hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200 shadow-md">
+                Compare Codes
+            </button>
+
+            <!-- Comparison Output Area -->
+            <div id="comparisonOutput" class="mt-6 bg-white border border-gray-300 rounded-lg p-5 hidden">
+                <h3 class="text-xl font-semibold text-secondary mb-3">
+                    Comparison Details
+                </h3>
+                <div id="comparisonResultContent" class="space-y-2 text-gray-700">
+                    <!-- Results will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6 text-xs text-gray-400 text-center">
+            Logic based on: Sign, Thousands (Runoff), Hundreds (State), Tens/Units (Opponents).
+        </div>
+    </div>
+
+    <script>
+        // --- Helper Function: Decodes a single number into a structured object ---
+        function getTunnelData(number) {
+            const data = {
+                number: number,
+                isValid: false,
+                isEscape: false,
+                hundredsCode: 0,
+                tensVal: 0,
+                unitsVal: 0,
+                mainStatus: '',
+                error: null,
+                isPositive: false
+            };
+
+            const parsedNumber = parseInt(number, 10);
+            
+            if (isNaN(parsedNumber)) {
+                data.error = 'Please enter a valid integer.';
+                return data;
+            }
+
+            if (parsedNumber === 0) {
+                data.mainStatus = "INITIALIZATION (0): Should never be seen in the output.";
+                data.isValid = true;
+                return data;
+            }
+
+            data.isValid = true;
+            data.isPositive = parsedNumber > 0;
+            
+            // 1. Decode Thousands (Runoff Areas)
+            const absVal = Math.abs(parsedNumber);
+            data.isEscape = absVal >= 1000;
+            const coreVal = absVal % 1000;
+
+            // 2. Decode Tens and Units (Opponents/Defenders)
+            data.tensVal = Math.floor((coreVal % 100) / 10);
+            data.unitsVal = coreVal % 10;
+            
+            // Validation: Defenders cannot be more than Total Opponents
+            if (data.unitsVal > data.tensVal) {
+                data.error = `INVALID CODE: Defenders (${data.unitsVal}) cannot be greater than Total Opponents (${data.tensVal}).`;
+                data.isValid = false;
+                return data;
+            }
+
+            // 3. Decode Hundreds (Main Status)
+            data.hundredsCode = Math.floor(coreVal / 100) * 100;
+            
+            // Logic for Positive Numbers (> 0): Calculated Tunnel (Not Track Tunnel)
+            if (data.isPositive) {
+                switch (data.hundredsCode) {
+                    case 0:
+                        data.mainStatus = "Calculated & Allowed (0xx): ALLOWED Tunnel selected (different from Track Tunnel), minimum cost used.";
+                        break;
+                    case 100:
+                        data.mainStatus = "Forced Right (1xx): Right tunnel forced because all opponents are ON SIDE to the left. Chosen tunnel is NOT allowed.";
+                        break;
+                    case 200:
+                        data.mainStatus = "Forced Left (2xx): Left tunnel forced because all opponents are ON SIDE to the right. Chosen tunnel is NOT allowed. (Ex: 221)";
+                        break;
+                    case 300:
+                        data.mainStatus = "Forced Middle (3xx): Tunnel forced between ON SIDE opponents. Chosen tunnel is NOT allowed.";
+                        break;
+                    case 400:
+                        data.mainStatus = "Emergency Tunnel (4xx): Not all ON SIDE. EM SUITABLE tunnel found (lowest cost if multiple).";
+                        break;
+                    case 500:
+                        data.mainStatus = "Middle Tunnel (5xx): Not all ON SIDE. Middle tunnel found with non-intersecting edges.";
+                        break;
+                    case 600:
+                        data.mainStatus = "Best Match (6xx): No condition met. BEST MATCH performed with the previous tunnel.";
+                        break;
+                    default:
+                        data.mainStatus = "Unknown Positive Hundreds Code.";
+                }
+            } 
+            // Logic for Negative Numbers (< 0): Tunnel NOT Calculated (Equal to Track Tunnel)
+            else { 
+                if (data.hundredsCode === 100) {
+                    data.mainStatus = "Tunnel NOT Calculated (-1xx): Overtake Logic DISABLED OR no opponents present. Tunnel = Track Tunnel. (Ex: -110)";
+                } else if (data.hundredsCode > 100 || data.hundredsCode < 0) {
+                     data.mainStatus = "Tunnel NOT Calculated (-N00): Negative state with hundreds code outside the standard (-100) range.";
+                } else { 
+                    // Number is between 0 and -100 (e.g., -41, -8)
+                    data.mainStatus = "Tunnel NOT Calculated (< -100): Overtake Logic ENABLED, opponents present, but interactions are **NOT influencing** tunnels. Tunnel = Track Tunnel. (Ex: -41)";
+                }
+            }
+
+            return data;
+        }
+
+        // --- Main Decoding Function (Updates UI) ---
+        function decodeNumber(inputValue) {
+            const mainStatus = document.getElementById('mainStatus');
+            const opponentsCount = document.getElementById('opponentsCount');
+            const defendersCount = document.getElementById('defendersCount');
+            const opponentDetails = document.getElementById('opponentDetails');
+            const escapeStatus = document.getElementById('escapeStatus');
+            
+            // Reset UI elements
+            mainStatus.className = 'text-gray-900 font-medium text-base';
+            opponentDetails.classList.add('hidden');
+            escapeStatus.classList.add('hidden');
+            
+            const data = getTunnelData(inputValue);
+
+            if (data.error) {
+                mainStatus.textContent = data.error;
+                mainStatus.className = 'text-red-600 font-bold text-base';
+                return;
+            }
+            
+            if (!data.isValid) {
+                 mainStatus.textContent = data.mainStatus; // This handles the '0' case
+                 return;
+            }
+            
+            // Update Main Status
+            mainStatus.textContent = data.mainStatus;
+            mainStatus.className = data.isPositive ? 'text-green-700 font-bold text-base' : 'text-red-700 font-bold text-base';
+
+            // Update Opponent Details
+            if (data.tensVal > 0) {
+                opponentsCount.textContent = data.tensVal;
+                defendersCount.textContent = data.unitsVal;
+                opponentDetails.classList.remove('hidden');
+            } else {
+                opponentDetails.classList.add('hidden');
+            }
+            
+            // Update Escape Status
+            if (data.isEscape) {
+                escapeStatus.classList.remove('hidden');
+            }
+        }
+
+        // --- Toggle Comparison Tool Visibility ---
+        function toggleComparisonTool() {
+            const section = document.getElementById('comparisonSection');
+            const button = document.getElementById('toggleButton');
+            
+            if (section.classList.contains('hidden')) {
+                section.classList.remove('hidden');
+                button.textContent = 'Close Tunnel Comparison Tool';
+                // Change color for "Open" state
+                button.classList.remove('bg-secondary', 'hover:bg-gray-600');
+                button.classList.add('bg-red-500', 'hover:bg-red-600');
+            } else {
+                section.classList.add('hidden');
+                button.textContent = 'Open Tunnel Comparison Tool';
+                 // Change color back to secondary for "Closed" state
+                button.classList.add('bg-secondary', 'hover:bg-gray-600');
+                button.classList.remove('bg-red-500', 'hover:bg-red-600');
+            }
+        }
+
+
+        // --- Comparison Function ---
+        function compareTunnels() {
+            const code1 = document.getElementById('code1Input').value;
+            const code2 = document.getElementById('code2Input').value;
+            const comparisonOutput = document.getElementById('comparisonOutput');
+            const resultContainer = document.getElementById('comparisonResultContent');
+            
+            comparisonOutput.classList.add('hidden');
+            resultContainer.innerHTML = '';
+
+            if (!code1 || !code2) {
+                resultContainer.innerHTML = '<p class="text-red-600 font-medium">Please enter both Code 1 and Code 2 for comparison.</p>';
+                comparisonOutput.classList.remove('hidden');
+                return;
+            }
+
+            const data1 = getTunnelData(code1);
+            const data2 = getTunnelData(code2);
+
+            if (!data1.isValid || !data2.isValid) {
+                let errorHtml = '';
+                if (!data1.isValid && data1.error) errorHtml += `<p class="font-medium text-red-600">Code 1 Error: ${data1.error}</p>`;
+                if (!data2.isValid && data2.error) errorHtml += `<p class="font-medium text-red-600">Code 2 Error: ${data2.error}</p>`;
+                resultContainer.innerHTML = errorHtml || '<p class="text-red-600 font-medium">One or both codes are invalid.</p>';
+                comparisonOutput.classList.remove('hidden');
+                return;
+            }
+
+            const differences = [];
+
+            // 1. Comparison of Main Status
+            if (data1.mainStatus !== data2.mainStatus) {
+                differences.push(`**Main Status Change:** Changed from: **${data1.mainStatus}** to: **${data2.mainStatus}**`);
+            } else {
+                 differences.push(`**Main Status:** No change. (${data1.mainStatus})`);
+            }
+
+            // 2. Comparison of Opponents
+            if (data1.tensVal !== data2.tensVal) {
+                differences.push(`**Total Opponents:** Changed from: **${data1.tensVal}** to: **${data2.tensVal}**`);
+            }
+            if (data1.unitsVal !== data2.unitsVal) {
+                differences.push(`**Defenders:** Changed from: **${data1.unitsVal}** to: **${data2.unitsVal}**`);
+            }
+            if (data1.tensVal === data2.tensVal && data1.unitsVal === data2.unitsVal && data1.tensVal > 0) {
+                 differences.push(`**Opponent Count:** No change (${data1.tensVal} total, ${data1.unitsVal} defenders).`);
+            }
+
+            // 3. Comparison of Runoff Areas (Escape)
+            if (data1.isEscape !== data2.isEscape) {
+                const status1 = data1.isEscape ? 'TRIGGERED' : 'NOT triggered';
+                const status2 = data2.isEscape ? 'TRIGGERED' : 'NOT triggered';
+                differences.push(`**Runoff Areas:** Changed from: **${status1}** to: **${status2}**`);
+            } else if (data1.isEscape) {
+                differences.push(`**Runoff Areas:** Status remained **TRIGGERED**.`);
+            } else {
+                 differences.push(`**Runoff Areas:** Status remained **NOT triggered**.`);
+            }
+            
+            // Generate HTML Output
+            // Use a specific style for differences to make them stand out
+            let outputHtml = differences.map(diff => `<p class="text-sm border-b border-gray-100 pb-2">${diff}</p>`).join('');
+            
+            resultContainer.innerHTML = outputHtml;
+            comparisonOutput.classList.remove('hidden');
+        }
+
+        // Event Listeners for single decoder
+        document.getElementById('codeInput').addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                decodeNumber(event.target.value);
+            }
+        });
+
+        // Esegui la decodifica iniziale se c'è un valore pre-riempito
+        window.onload = () => {
+             // Initialize with an example to show functionality
+             document.getElementById('codeInput').value = '221';
+             decodeNumber('221');
+             
+             // Initialize comparison inputs with examples
+             document.getElementById('code1Input').value = '-41';
+             document.getElementById('code2Input').value = '1005';
+        };
+    </script>
+</body>
+</html>
