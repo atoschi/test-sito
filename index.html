@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css">
 
-  <!-- FontAwesome: needed for icons -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <script defer src="static/js/fontawesome.all.min.js"></script>
 
@@ -20,6 +20,7 @@
     .hero.video-hero { position: relative; overflow: hidden; }
     .hero-video-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: #000; }
     .hero-video-bg video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
+
     .overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(180deg,
@@ -27,84 +28,102 @@
         rgba(0,0,0,0.55) 45%,
         rgba(0,0,0,0.78) 100%);
     }
-    .hero-body { position: relative; z-index: 2; }
 
-    .hero-title, .hero-subtitle, .hero-text {
+    /* Make navbar sit on top of video */
+    .nav-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 3;
+      background: rgba(0,0,0,0.20);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .nav-overlay .navbar-item,
+    .nav-overlay .navbar-link {
+      color: rgba(255,255,255,0.92);
+    }
+    .nav-overlay .navbar-item:hover {
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+    }
+    .nav-overlay .navbar-item.is-active {
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      font-weight: 700;
+    }
+    .nav-overlay .navbar-item .icon {
+      color: rgba(255,255,255,0.95);
+    }
+
+    .hero-body { position: relative; z-index: 2; padding-top: 5.25rem; } /* room for navbar */
+
+    .hero-title, .hero-text {
       color: #fff;
       text-shadow: 0 10px 28px rgba(0,0,0,0.45);
     }
-    .hero-subtitle { color: rgba(255,255,255,0.92); }
     .hero-text { color: rgba(255,255,255,0.90); }
     .maxw-900 { max-width: 900px; margin: 0 auto; }
-
-    /* Buttons area */
-    .hub-buttons .button {
-      min-width: 240px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.28);
-      background: rgba(255,255,255,0.14);
-      color: #fff;
-      backdrop-filter: blur(6px);
-    }
-    .hub-buttons .button:hover {
-      background: rgba(255,255,255,0.20);
-      border-color: rgba(255,255,255,0.40);
-      color: #fff;
-    }
-    .hub-buttons .button .icon { color: #fff; }
-    .small-note { color: rgba(255,255,255,0.72); }
   </style>
 </head>
 
 <body>
 <section class="hero is-fullheight video-hero">
+
+  <!-- NAVBAR (Home active) -->
+  <nav class="navbar nav-overlay" role="navigation" aria-label="main navigation">
+    <div class="container is-max-desktop">
+      <div class="navbar-brand">
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span style="margin-left:8px;">Home</span>
+        </a>
+      </div>
+
+      <div class="navbar-menu is-active">
+        <div class="navbar-end">
+          <a class="navbar-item" href="paper.html">
+            <span class="icon" style="margin-right:8px;"><i class="fas fa-file-alt"></i></span>
+            Paper (Legacy)
+          </a>
+          <a class="navbar-item" href="thesis.html">
+            <span class="icon" style="margin-right:8px;"><i class="fas fa-graduation-cap"></i></span>
+            PhD Thesis (Latest)
+          </a>
+          <a class="navbar-item" href="code.html">
+            <span class="icon" style="margin-right:8px;"><i class="fab fa-github"></i></span>
+            Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
   <div class="hero-video-bg" aria-hidden="true">
     <video playsinline autoplay muted loop>
       <source src="static/videos/cover.mp4" type="video/mp4">
     </video>
   </div>
+
   <div class="overlay" aria-hidden="true"></div>
 
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
 
       <h1 class="title is-1 hero-title">
-        Modular Decision-Making and Drivable Areas<br>
-        for Multi-Agent Autonomous Racing
+        Tunnels Framework for<br>
+        Multi-Agent Autonomous Racing
       </h1>
-
-      <h2 class="subtitle is-4 hero-subtitle" style="margin-top: 0.75rem;">
-        Project webpage — paper snapshot, latest thesis results, and code release status
-      </h2>
 
       <div class="content hero-text is-size-6 maxw-900" style="margin-top: 1.25rem;">
         <p>
-          This website hosts <b>two versions</b> of the work.
-          If you arrived from a paper citation, use <b>Paper (Legacy)</b>.
-          For the most up-to-date and extended results, see <b>Thesis (Latest)</b>.
+          This project webpage hosts <b>two versions</b> of the work.
+          If you arrived from a paper citation, use <b>Paper</b> (Legacy).
+          For the most up-to-date and extended results, see <b>PhD Thesis</b> (Latest). In the <b>Code</b> section,
+          you will find the current status of the framework implementation and some related documentation.
         </p>
       </div>
 
-      <div class="hub-buttons buttons is-centered" style="margin-top: 1.5rem;">
-        <a class="button is-medium" href="paper.html">
-          <span class="icon"><i class="fas fa-file-alt"></i></span>
-          <span>Paper (Legacy)</span>
-        </a>
-
-        <a class="button is-medium" href="thesis.html">
-          <span class="icon"><i class="fas fa-graduation-cap"></i></span>
-          <span>Thesis (Latest)</span>
-        </a>
-
-        <a class="button is-medium" href="code.html">
-          <span class="icon"><i class="fab fa-github"></i></span>
-          <span>Code</span>
-        </a>
-      </div>
-
-      <p class="small-note is-size-7" style="margin-top: 1.75rem;">
-        University of Modena and Reggio Emilia
-      </p>
+      <!-- No big cards/buttons anymore; navigation is in the navbar -->
     </div>
   </div>
 </section>
